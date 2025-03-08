@@ -26,9 +26,16 @@ app.post("/api/products",async (req,res)=>{
     }
 });
 
+app.delete("/api/products/:id",async (req,res)=>{
+   const{id}=req.params;
+   try{
+    await Product.findByIdAndDelete(id);
+    res.status(200).json({success:true,message:"Product removed"});
+   }catch(error){} 
+});
+
 app.listen(5000, () => {
     connectDB();
   console.log('Server is running on http://localhost:5000');
 })
 
-//SsiOS6Odc6YnBVRd
